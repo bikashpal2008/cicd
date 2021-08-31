@@ -8,6 +8,8 @@ echo "Deploying application ..."
     # Update codebase
     git pull
 
+    php artisan key:generate
+
     # Install dependencies based on lock file
     composer install --no-interaction --prefer-dist --optimize-autoloader
 
