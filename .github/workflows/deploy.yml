@@ -1,40 +1,40 @@
-# name: CD
+name: CD
 
-# on:
-#   push:
-#     branches: [ master ]
+on:
+  push:
+    branches: [ master ]
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#       with:
-#         token: ${{ secrets.PUSH_TOKEN }}
-#     - name: Set up laravel
-#       uses: actions/setup-node@v1
-#     - run: composer install
-#     - name: Deploy to production
-#       uses: appleboy/ssh-action@v0.1.2
-#       with:
-#         host: ${{secrets.SSH_HOST}}
-#         key: ${{secrets.SSH_KEY}} # Private or public key of the server
-#         username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
-#         script: 'cd /var/www/html && ./server_deploy.sh'
-
-name: remote ssh command
-on: [push]
 jobs:
-
-  build:
-    name: Build
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PUSH_TOKEN }}
+    - name: Set up laravel
+      uses: actions/setup-node@v1
+    - run: composer install
+    - name: Deploy to production
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        #port: ${{ secrets.SSH_PORT }}
-        script: whoami
+        host: ${{secrets.SSH_HOST}}
+        key: ${{secrets.SSH_KEY}} # Private or public key of the server
+        username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
+        script: 'cd /var/www/html && ./server_deploy.sh'
+
+# name: remote ssh command
+# on: [push]
+# jobs:
+
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: executing remote ssh commands using password
+#       uses: appleboy/ssh-action@master
+#       with:
+#         host: ${{ secrets.SSH_HOST }}
+#         username: ${{ secrets.SSH_USERNAME }}
+#         key: ${{ secrets.SSH_KEY }}
+#         #port: ${{ secrets.SSH_PORT }}
+#         script: whoami
