@@ -14,12 +14,8 @@ jobs:
     - name: Set up laravel
       uses: actions/setup-node@v1
     - run: composer install
-    - name: Commit built assets
-      uses: appleboy/ssh-action@v0.1.2
-      run: |
-        git pull
     - name: Deploy to production
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v0.1.2
       with:
         host: ${{secrets.SSH_HOST}}
         key: ${{secrets.SSH_KEY}} # Private or public key of the server
