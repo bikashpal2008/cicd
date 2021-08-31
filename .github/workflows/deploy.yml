@@ -14,12 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
     - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
       with:
         host: ${{secrets.SSH_HOST}} # IP address of the server you wish to ssh into
         key: ${{secrets.SSH_KEY}} # Private or public key of the server
