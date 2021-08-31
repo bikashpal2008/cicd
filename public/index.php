@@ -1,5 +1,5 @@
 <?php
-echo 'working'; exit;
+echo 'working test'; exit;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
