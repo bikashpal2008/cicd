@@ -15,6 +15,7 @@ jobs:
       uses: actions/setup-node@v1
     - run: composer install
     - name: Commit built assets
+      uses: appleboy/ssh-action@v0.1.2
       run: |
         git pull
     - name: Deploy to production
