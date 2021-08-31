@@ -8,12 +8,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.PUSH_TOKEN }}
-    - name: Set up laravel
-      uses: actions/setup-node@v1
-    - run: composer install
+    # - uses: actions/checkout@v2
+    #   with:
+    #     token: ${{ secrets.PUSH_TOKEN }}
     - name: Deploy to production
       uses: appleboy/ssh-action@master
       with:
